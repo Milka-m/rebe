@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You deserve yellow flowers too, Love you🌼💛</title>
+  <style>
+    *,
+    *::after,
+    *::before {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark-color: #000;
+      --sunflower-petal: #FFD700; /* Amarillo girasol */
+      --sunflower-center: #8B4513; /* Marrón para el centro */
+      --stem-green: #3CB371; /* Verde más vivo para los tallos */
+      --leaf-green: #6B8E23; /* Verde oliva para las hojas */
+      --light-blue: #23f0ff;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
+      justify-content: flex-end; 
+      min-height: 100vh;
+      background-color: var(--dark-color);
+      position: relative;
+    }
+
+    .night {
+      z-index: -1;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      filter: blur(0.1vmin);
+      background-image: radial-gradient(
+          ellipse at top,
+          transparent 0%,
+          var(--dark-color)
+        ),
+        radial-gradient(
+          ellipse at bottom,
+          var(--dark-color),
+          rgba(145, 233, 255, 0.2)
+        ),
+        repeating-linear-gradient(
+          220deg,
+          rgb(0, 0, 0) 0px,
+          rgb(0, 0, 0) 19px,
+          transparent 19px,
+          transparent 22px
+        ),
+        repeating-linear-gradient(
+          189deg,
+          rgb(0, 0, 0) 0px,
+          rgb(0, 0, 0) 19px,
+          transparent 19px,
+          transparent 22px
+        ),
+        repeating-linear-gradient(
+          148deg,
+          rgb(0, 0, 0) 0px,
+          rgb(0, 0, 0) 19px,
+          transparent 19px,
+          transparent 22px
+        ),
+        linear-gradient(90deg, rgb(0, 255, 250), rgb(240, 240, 240));
+    }
+
+    .titulo {
+      position: absolute;
+      top: 50%; /* Lo muevo al 50% de la altura del viewport */
+      left: 50%;
+      transform: translate(-50%, -50%); /* Lo centro perfectamente */
+      color: var(--sunflower-petal); 
+      font-size: clamp(2rem, 5vw, 4rem); /* Ajuste para que sea responsivo */
+      text-align: center;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeIn 4s ease-in-out forwards;
+      z-index: 200;
+      white-space: nowrap;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7); 
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -40%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    .flowers-container {
+      display: flex;
+      align-items: flex-end; 
+      justify-content: center;
+      width: 100%;
+      height: 80vh; 
+      position: relative;
+      margin-bottom: 5vh; 
+      z-index: 10;
+    }
+
+    .flower {
+      position: relative;
+      transform-origin: bottom center;
+      z-index: 10;
+      --fl-speed: 0.8s;
+      margin: 0 5vmin; 
+      bottom: 0;
+    }
+
+    .flower--1 {
+      transform: scale(0.8); 
+      animation: moving-flower-1 4s linear infinite;
+    }
+    .flower--2 {
+      transform: scale(1); 
+      animation: moving-flower-2 4s linear infinite;
+      z-index: 15; 
+    }
+    .flower--3 {
+      transform: scale(0.85); 
+      animation: moving-flower-3 4s linear infinite;
+    }
+    @keyframes moving-flower-1 {
+      0%, 100% { transform: scale(0.8) rotate(0deg) translateX(0); }
+      50% { transform: scale(0.8) rotate(2deg) translateX(2%); }
+    }
+    @keyframes moving-flower-2 {
+      0%, 100% { transform: scale(1) rotate(0deg) translateX(0); }
+      50% { transform: scale(1) rotate(-3deg) translateX(-2%); }
+    }
+    @keyframes moving-flower-3 {
+      0%, 100% { transform: scale(0.85) rotate(0deg) translateX(0); }
+      50% { transform: scale(0.85) rotate(1deg) translateX(1%); }
+    }
+
+    .flower__leafs {
+      position: relative;
+      animation: blooming-flower 2s backwards;
+      animation-delay: var(--flower-delay, 0s); 
+    }
+    .flower--1 .flower__leafs { --flower-delay: 1.1s; }
+    .flower--2 .flower__leafs { --flower-delay: 1.4s; }
+    .flower--3 .flower__leafs { --flower-delay: 1.7s; }
+    .flower__leafs::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 8vmin;
+      height: 8vmin;
+      border-radius: 50%; 
+      background-color: var(--sunflower-center); 
+      filter: blur(0.5vmin); 
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.5); 
+      z-index: 2;
+    }
+    .flower__leaf {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 6vmin; 
+      height: 12vmin; 
+      border-radius: 50% / 100% 100% 0 0; 
+      background-color: var(--sunflower-petal); 
+      transform-origin: bottom center;
+      opacity: 0.9;
+      box-shadow: inset 0 0 1vmin rgba(255, 255, 255, 0.3);
+      z-index: 1;
+    }
+    .flower__leaf--1 { transform: translate(-50%, 0) rotate(0deg); }
+    .flower__leaf--2 { transform: translate(-50%, 0) rotate(45deg); }
+    .flower__leaf--3 { transform: translate(-50%, 0) rotate(90deg); }
+    .flower__leaf--4 { transform: translate(-50%, 0) rotate(135deg); }
+    .flower__leaf--5 { transform: translate(-50%, 0) rotate(180deg); }
+    .flower__leaf--6 { transform: translate(-50%, 0) rotate(225deg); }
+    .flower__leaf--7 { transform: translate(-50%, 0) rotate(270deg); }
+    .flower__leaf--8 { transform: translate(-50%, 0) rotate(315deg); }
+    .flower__leaf--9 { transform: translate(-50%, 0) rotate(22.5deg); }
+    .flower__leaf--10 { transform: translate(-50%, 0) rotate(67.5deg); }
+    .flower__leaf--11 { transform: translate(-50%, 0) rotate(112.5deg); }
+    .flower__leaf--12 { transform: translate(-50%, 0) rotate(157.5deg); }
+    .flower__leaf--13 { transform: translate(-50%, 0) rotate(202.5deg); }
+    .flower__leaf--14 { transform: translate(-50%, 0) rotate(247.5deg); }
+    .flower__leaf--15 { transform: translate(-50%, 0) rotate(292.5deg); }
+    .flower__leaf--16 { transform: translate(-50%, 0) rotate(337.5deg); }
+    .flower__line {
+      height: 40vmin; 
+      width: 1.5vmin;
+      background-image: linear-gradient(
+          to left,
+          rgba(0, 0, 0, 0.2),
+          transparent,
+          rgba(255, 255, 255, 0.2)
+        ),
+        linear-gradient(to top, transparent 10%, var(--stem-green), var(--leaf-green));
+      box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+      animation: grow-flower-tree 4s backwards;
+      animation-delay: var(--stem-delay, 0s);
+    }
+    .flower--1 .flower__line { --stem-delay: 0.3s; }
+    .flower--2 .flower__line { --stem-delay: 0.6s; }
+    .flower--3 .flower__line { --stem-delay: 0.9s; }
+    .flower__line__leaf {
+      --w: 7vmin;
+      --h: calc(var(--w) + 2vmin);
+      position: absolute;
+      top: 50%; 
+      left: 100%;
+      width: var(--w);
+      height: var(--h);
+      border-radius: 50% 0 50% 0; 
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0.1), var(--leaf-green));
+      transform-origin: bottom left;
+      animation: blooming-leaf-right var(--fl-speed) backwards;
+      animation-delay: var(--leaf-delay, 0s);
+    }
+    .flower__line__leaf--1 { transform: rotate(70deg) rotateY(30deg); --leaf-delay: 1.6s; }
+    .flower__line__leaf--2 { top: 70%; transform: rotate(90deg) rotateY(20deg); --leaf-delay: 1.4s; }
+    .flower__line__leaf--3 {
+        left: -100%; 
+        transform: rotate(-70deg) rotateY(-30deg);
+        transform-origin: bottom right;
+        border-radius: 0 50% 0 50%;
+        --leaf-delay: 1.2s;
+    }
+    @keyframes blooming-flower { 0% { transform: scale(0) rotateX(90deg); opacity: 0; } 100% { transform: scale(1) rotateX(0deg); opacity: 1; } }
+    @keyframes blooming-leaf-right { 0% { transform-origin: left; transform: rotate(70deg) rotateY(30deg) scale(0); opacity: 0; } }
+    @keyframes grow-flower-tree { 0% { height: 0; } }
+    @keyframes light-ans { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.7);
+      animation: shoot 2s linear forwards;
+      opacity: 0;
+      z-index: 50;
+    }
+    .shooting-star::after {
+      content: '';
+      position: absolute;
+      width: 100px; 
+      height: 2px;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.7));
+      transform: translateX(-100px); 
+      top: 0;
+      left: 0;
+    }
+    @keyframes shoot {
+      0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+        transform: translate(100px, -100px) scale(0.8);
+      }
+      100% {
+        transform: translate(300px, -300px) scale(1);
+        opacity: 0;
+      }
+    }
+    
+    /* Media query para dispositivos móviles */
+    @media only screen and (max-width: 600px) {
+      .titulo {
+        font-size: clamp(1.5rem, 8vw, 2.5rem); /* Ajuste de tamaño para móviles */
+      }
+      .flowers-container {
+        flex-direction: column; 
+        height: auto;
+        margin-bottom: 2vh;
+      }
+      .flower {
+        margin: 5vmin 0;
+        transform: scale(0.7) !important;
+      }
+      .flower--2 { z-index: 10; } 
+    }
+  </style>
+</head>
+<body>
+  <div class="night"></div>
+  <h3 class="titulo">You deserve yellow flowers too, Love you🌼💛</h3>
+
+  <div class="flowers-container">
+    <div class="flower flower--1">
+      <div class="flower__leafs">
+        <div class="flower__leaf flower__leaf--1"></div>
+        <div class="flower__leaf flower__leaf--2"></div>
+        <div class="flower__leaf flower__leaf--3"></div>
+        <div class="flower__leaf flower__leaf--4"></div>
+        <div class="flower__leaf flower__leaf--5"></div>
+        <div class="flower__leaf flower__leaf--6"></div>
+        <div class="flower__leaf flower__leaf--7"></div>
+        <div class="flower__leaf flower__leaf--8"></div>
+        <div class="flower__leaf flower__leaf--9"></div>
+        <div class="flower__leaf flower__leaf--10"></div>
+        <div class="flower__leaf flower__leaf--11"></div>
+        <div class="flower__leaf flower__leaf--12"></div>
+        <div class="flower__leaf flower__leaf--13"></div>
+        <div class="flower__leaf flower__leaf--14"></div>
+        <div class="flower__leaf flower__leaf--15"></div>
+        <div class="flower__leaf flower__leaf--16"></div>
+      </div>
+      <div class="flower__line">
+        <div class="flower__line__leaf flower__line__leaf--1"></div>
+        <div class="flower__line__leaf flower__line__leaf--2"></div>
+      </div>
+    </div>
+
+    <div class="flower flower--2">
+      <div class="flower__leafs">
+        <div class="flower__leaf flower__leaf--1"></div>
+        <div class="flower__leaf flower__leaf--2"></div>
+        <div class="flower__leaf flower__leaf--3"></div>
+        <div class="flower__leaf flower__leaf--4"></div>
+        <div class="flower__leaf flower__leaf--5"></div>
+        <div class="flower__leaf flower__leaf--6"></div>
+        <div class="flower__leaf flower__leaf--7"></div>
+        <div class="flower__leaf flower__leaf--8"></div>
+        <div class="flower__leaf flower__leaf--9"></div>
+        <div class="flower__leaf flower__leaf--10"></div>
+        <div class="flower__leaf flower__leaf--11"></div>
+        <div class="flower__leaf flower__leaf--12"></div>
+        <div class="flower__leaf flower__leaf--13"></div>
+        <div class="flower__leaf flower__leaf--14"></div>
+        <div class="flower__leaf flower__leaf--15"></div>
+        <div class="flower__leaf flower__leaf--16"></div>
+      </div>
+      <div class="flower__line">
+        <div class="flower__line__leaf flower__line__leaf--1"></div>
+        <div class="flower__line__leaf flower__line__leaf--2"></div>
+        <div class="flower__line__leaf flower__line__leaf--3"></div>
+      </div>
+    </div>
+
+    <div class="flower flower--3">
+      <div class="flower__leafs">
+        <div class="flower__leaf flower__leaf--1"></div>
+        <div class="flower__leaf flower__leaf--2"></div>
+        <div class="flower__leaf flower__leaf--3"></div>
+        <div class="flower__leaf flower__leaf--4"></div>
+        <div class="flower__leaf flower__leaf--5"></div>
+        <div class="flower__leaf flower__leaf--6"></div>
+        <div class="flower__leaf flower__leaf--7"></div>
+        <div class="flower__leaf flower__leaf--8"></div>
+        <div class="flower__leaf flower__leaf--9"></div>
+        <div class="flower__leaf flower__leaf--10"></div>
+        <div class="flower__leaf flower__leaf--11"></div>
+        <div class="flower__leaf flower__leaf--12"></div>
+        <div class="flower__leaf flower__leaf--13"></div>
+        <div class="flower__leaf flower__leaf--14"></div>
+        <div class="flower__leaf flower__leaf--15"></div>
+        <div class="flower__leaf flower__leaf--16"></div>
+      </div>
+      <div class="flower__line">
+        <div class="flower__line__leaf flower__line__leaf--1"></div>
+        <div class="flower__line__leaf flower__line__leaf--2"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const body = document.body;
+
+      function createShootingStar() {
+        const star = document.createElement('div');
+        star.classList.add('shooting-star');
+        
+        // Posición inicial aleatoria en la parte superior izquierda
+        star.style.left = `${Math.random() * 20}%`; 
+        star.style.top = `${Math.random() * 20}%`;
+
+        // Retraso de animación aleatorio
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        
+        body.appendChild(star);
+
+        // Eliminar la estrella después de su animación
+        star.addEventListener('animationend', () => {
+          star.remove();
+        });
+      }
+
+      // Generar estrellas cada cierto tiempo
+      setInterval(createShootingStar, 1500); // Una estrella cada 1.5 segundos
+      
+      // Crear algunas estrellas al inicio
+      for (let i = 0; i < 3; i++) {
+        createShootingStar();
+      }
+    });
+  </script>
+</body>
+</html>
